@@ -68,7 +68,13 @@ table(metro$line_name[metro$est_wkday_ridership == 0])
 ```{r}
 
 # Putting the year and month together, so we can use the dates for graphs
-metro$date <- as.Date(paste(metro$year, metro$month, "01", sep="-"))
+
+# Using the function from our cleaning file
+source("01_funct_datacleaning.R")
+
+# Adding the date column
+metro <- add_date(metro)
+
 
 # Checking if the dates worked
 head(metro$date)
