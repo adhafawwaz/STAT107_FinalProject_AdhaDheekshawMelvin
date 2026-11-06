@@ -1,0 +1,77 @@
+---
+title: "11_DataCleaning"
+output: pdf_document›
+date: "2026-11-06"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Importing the Data
+
+We are importing the LA Metro ridership dataset.
+
+```{r}
+metro <- read.csv("metro_ridership (1).csv")
+
+head(metro)›
+
+```
+```{r}
+# Check the variables & data types
+str(metro)
+
+#View basic statistics of each variable
+summary(metro)
+
+# Count the missing values in each column
+colSums(is.na(metro))
+```
+```{r}
+# Checking for repeated records (same line, year, or month)
+sum(duplicated(metro[c("line_name", "year", "month")]))
+
+```
+
+## Checking for values that are unusual
+```{r}
+# Some zeros might mean the line isn't running / data isn't being recorded
+
+# Zero values for weekdays
+sum(metro$est_wkday_ridership == 0)
+
+# Zero values for Saturday 
+sum(metro$est_sat_ridership == 0)
+
+# Zero values for Sunday 
+sum(metro$est_sun_ridership == 0)
+
+#Ridership should not be negative, so I am checking that as well
+
+# Negative weekdays
+sum(metro$est_wkday_ridership < 0)
+
+# Negative Saturdays
+sum(metro$est_sat_ridership < 0)
+
+# Negative Sundays
+sum(metro$est_sun_ridership < 0)
+```
+```{r}
+# To check which lines have zero weekday ridership
+table(metro$line_name[metro$est_wkday_ridership == 0])
+```
+
+## Now creating a data column, preparing the data
+
+```{r}
+
+# Putting the year and month together, so we can use the dates for graphs
+metro$date <- as.Date(paste(metro$year, metro$month, "01", sep="-"))
+
+# Checking if the dates worked
+head(metro$date)
+
+```
+
