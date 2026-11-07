@@ -1,6 +1,29 @@
 metro <- read.csv("metro_ridership.csv")
 head(metro)
+
+
+# 1. Load the required package
 library(ggplot2)
+
+# 2. Read the data (if not already loaded)
+
+metro <- read.csv("metro_ridership.csv")
+
+# 2. Create the date column so line plots work properly
+metro$date <- as.Date(paste(metro$year, metro$month, "01", sep = "-"))
+
+# 3. Create the graph ~ looking at ridership over time for each line
+ggplot(metro, aes(x = date, y = est_wkday_ridership, color = line_name)) +
+  geom_line(linewidth = 0.8) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    title = "Estimated Weekday Ridership Over Time",
+    x = "Date",
+    y = "Estimated Weekday Ridership",
+    color = "Metro Line"
+  ) +
+  theme_minimal()
+
 
 # Adding dates when the new Metro projects were opened
 # October 2022: The K line is opened
