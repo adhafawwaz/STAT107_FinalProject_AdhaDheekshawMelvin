@@ -25,7 +25,8 @@ This analysis may benefit LA Metro transportation planners, local government off
 Rather than developing a predictive model, our primary objective is to conduct an exploratory data analysis and further investigate potential relationships between infrastructure developments and ridership recovery. Ultimately, we hope to identify trends that can help explain trajectroy of post-pandemic public transportation usage and highlight potential opportunities to increase rail ridership in the future.
 
 Here is the link to the repository of our project on GitHub: 
-https://github.com/adhafawwaz/STAT107_FinalProject_AdhaDheekshawMelvin.git
+
+### https://github.com/adhafawwaz/STAT107_FinalProject_AdhaDheekshawMelvin.git
 
 
 # Executive Summary
