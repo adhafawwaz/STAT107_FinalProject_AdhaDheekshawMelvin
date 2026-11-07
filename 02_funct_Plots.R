@@ -1,29 +1,5 @@
 metro <- read.csv("metro_ridership.csv")
 head(metro)
-
-# 1. Load the required package
-library(ggplot2)
-
-# 2. Read the data (if not already loaded)
-
-metro <- read.csv("metro_ridership.csv")
-
-# 2. Create the date column so line plots work properly
-metro$date <- as.Date(paste(metro$year, metro$month, "01", sep = "-"))
-
-# 3. Create the graph ~ looking at ridership over time for each line
-ggplot(metro, aes(x = date, y = est_wkday_ridership, color = line_name)) +
-  geom_line(linewidth = 0.8) +
-  scale_y_continuous(labels = scales::comma) +
-  labs(
-    title = "Estimated Weekday Ridership Over Time",
-    x = "Date",
-    y = "Estimated Weekday Ridership",
-    color = "Metro Line"
-  ) +
-  theme_minimal()
-
-
 library(ggplot2)
 
 # Adding dates when the new Metro projects were opened
@@ -48,6 +24,7 @@ ggplot(metro, aes(x = date, y = est_wkday_ridership, color = line_name)) +
   ) +
   theme_minimal()
 
+
 # Compare years Side by Side
 ggplot(metro, aes(x = month, y = est_wkday_ridership, color = as.factor(year))) +
   geom_line(linewidth = 1) +
@@ -62,6 +39,7 @@ ggplot(metro, aes(x = month, y = est_wkday_ridership, color = as.factor(year))) 
   ) +
   theme_bw()
 
+
 metro %>%
   filter(year >= 2019 & year <= 2026) %>%
   ggplot(aes(x = est_wkday_ridership)) +
@@ -74,6 +52,7 @@ metro %>%
   ) +
   theme_minimal()
 
+
 metro %>%
   filter(year >= 2019 & year <= 2026) %>%
   ggplot(aes(x = date, y = est_wkday_ridership, fill = line_name)) +
@@ -83,21 +62,6 @@ metro %>%
   scale_y_continuous(labels = scales::comma) +
   labs(
     title = "Monthly Weekday Ridership Trajectory by Line (2019–2026)",
-    x = "Date",
-    y = "Estimated Weekday Ridership"
-  ) +
-  theme_bw()
-
-metro %>%
-  filter(year >= 2019 & year <= 2026) %>%
-  ggplot(aes(x = date, y = est_wkday_ridership, color = line_name)) +
-  geom_point(alpha = 0.7, size = 1.8, show.legend = FALSE) +
-  geom_smooth(method = "loess", se = FALSE, color = "black", linetype = "dashed", size = 0.6) +
-  facet_wrap(~ line_name, scales = "free_y") +
-  scale_x_date(date_breaks = "2 years", date_labels = "%Y") +
-  scale_y_continuous(labels = scales::comma) +
-  labs(
-    title = "Monthly Weekday Ridership Scatterplot Trajectory (2019–2026)",
     x = "Date",
     y = "Estimated Weekday Ridership"
   ) +
