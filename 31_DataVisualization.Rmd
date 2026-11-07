@@ -31,8 +31,10 @@ ggplot(metro, aes(x = date, y = est_wkday_ridership, color = line_name)) +
     color = "Metro Line"
   ) +
   theme_minimal()
-# This line graph illustrates changes in estimated weekday ridership across different LA Metro rail lines over time. It allows us to identify overall ridership trends, including the significant decline during the COVID-19 pandemic and the gradual recovery in subsequent years. The gradual recoveries was helped by opening the Regional Connector in June 2023—boosted light rail lines (like the A and E Lines), helping ridership bounce back faster and spreading passenger traffic more evenly across Los Angeles County.
+```
+This line graph illustrates changes in estimated weekday ridership across different LA Metro rail lines over time. It allows us to identify overall ridership trends, including the significant decline during the COVID-19 pandemic and the gradual recovery in subsequent years. The gradual recoveries was helped by opening the Regional Connector in June 2023—boosted light rail lines (like the A and E Lines), helping ridership bounce back faster and spreading passenger traffic more evenly across Los Angeles County.
 
+```{r}
 # Adding dates when the new Metro projects were opened
 # October 2022: The K line is opened
 # June 2023: Regional Connecter opening (Re-links of A, E, and L lines)
@@ -54,9 +56,10 @@ ggplot(metro, aes(x = date, y = est_wkday_ridership, color = line_name)) +
     color = "Metro Line"
   ) +
   theme_minimal()
-# This visualization examines weekday ridership trends alongside major infrastructure developments, specifically the opening of the K Line in October 2022 and the Regional Connector in June 2023. By highlighting these events, we can explore whether the developments correspond with noticeable changes in ridership across the different Metro lines.
+```
+This visualization examines weekday ridership trends alongside major infrastructure developments, specifically the opening of the K Line in October 2022 and the Regional Connector in June 2023. By highlighting these events, we can explore whether the developments correspond with noticeable changes in ridership across the different Metro lines.
 
-
+```{r}
 # Compare years Side by Side
 ggplot(metro, aes(x = month, y = est_wkday_ridership, color = as.factor(year))) +
   geom_line(linewidth = 1) +
@@ -70,8 +73,10 @@ ggplot(metro, aes(x = month, y = est_wkday_ridership, color = as.factor(year))) 
     color = "Year"
   ) +
   theme_bw()
-# This line graph compares monthly ridership patterns across different years for each Metro rail line. It helps identify the year-to-year differences as well as identifying whether ridership has returned to comparable levels following the pandemic.
+```
+This line graph compares monthly ridership patterns across different years for each Metro rail line. It helps identify the year-to-year differences as well as identifying whether ridership has returned to comparable levels following the pandemic.
 
+```{r}
 library(dplyr)
 metro %>%
   filter(year >= 2019 & year <= 2026) %>%
@@ -84,9 +89,12 @@ metro %>%
     y = "Frequency (Number of Months)"
   ) +
   theme_minimal()
-# This histogram displays a distribution of weekday ridership between 2019 and 2026, This helps illustrate how frequently different ridership levels occur and provides a more nuanced insight into the variation in transit usage throughout pre-pandemic and post-pandemic eras.
+
+```
+This histogram displays a distribution of weekday ridership between 2019 and 2026, This helps illustrate how frequently different ridership levels occur and provides a more nuanced insight into the variation in transit usage throughout pre-pandemic and post-pandemic eras.
  
 
+```{r}
 metro %>%
   filter(year >= 2019 & year <= 2026) %>%
   ggplot(aes(x = date, y = est_wkday_ridership, fill = line_name)) +
@@ -100,5 +108,7 @@ metro %>%
     y = "Estimated Weekday Ridership"
   ) +
   theme_bw()
-# This bar chart shows a monthly weekday ridership between 2019 and 2026. We've separated the lines into its own individual panels to make it easier to compare their respective ridership trajectories, identify fluctuations, and evaluate differences in post-pandemic recovery, 
+```
+
+This bar chart shows a monthly weekday ridership between 2019 and 2026. We've separated the lines into its own individual panels to make it easier to compare their respective ridership trajectories, identify fluctuations, and evaluate differences in post-pandemic recovery, 
 ```
