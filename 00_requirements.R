@@ -23,5 +23,7 @@ if (!require(dplyr)) {       ## If package is not installed
   library(dplyr)
 }
 
-source("00_requirements.R")
-search()
+if (!require(dplyr)) {       ## If package is not installed  
+  install.packages("dplyr") ## Install
+  library(dplyr)
+}
