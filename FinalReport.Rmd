@@ -55,17 +55,108 @@ plots, box-plots, and numerical summaries of the data, depending on the type of 
 these visualizations suggest about the hypothesis, model or simulation you are aiming to perform? If
 you aim to generate further data visualizations, describe them here.
 
-```{r figure-label, echo=FALSE, fig.cap="This is my figure caption", fig.align='center', out.width="70%"}
-knitr::include_graphics(figures/figure1.pdf)
+```{r setup, echo=FALSE}
+library(dplyr)
+library(ggplot2)
+
+metro <- read.csv("metro_ridership.csv")
+metro$date <- as.Date(paste(metro$year, metro$month, "01", sep = "-"))
+ggplot(metro, aes(x = date, y = est_wkday_ridership, color = line_name)) +
+  geom_line(linewidth = 0.8) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    title = "Estimated Weekday Ridership Over Time",
+    x = "Date",
+    y = "Estimated Weekday Ridership",
+    color = "Metro Line"
+  ) +
+  theme_minimal()
 ```
+
 1. First Line Graph
 This line graph shows monthly weekday ridership for each LA Metro rail line from 2019 to 2026. Before 2020, the B Line had the most riders, with around 100,000 daily boardings, while the A and E Lines had about 50,000 to 60,000. In March 2020, ridership dropped by more than 70% across all lines because of the pandemic. Ridership slowly started to recover after 2021, but things changed around mid-2023. The B Line's recovery slowed down, while the A and E Lines saw a big increase in riders. By 2024–2026, the A Line had caught up to and even passed the B Line in weekday ridership.
+
+```{r, echo=FALSE}
+events <- data.frame(
+  date = as.Date(c("2022-10-01", "2023-06-01")),
+  label = c("K Line Opens", "Regional Connector Opens")
+)
+
+ggplot(metro, aes(x = date, y = est_wkday_ridership, color = line_name)) +
+  geom_line(linewidth = 0.8) +
+  geom_vline(data = events, aes(xintercept = date), linetype = "dotted", linewidth = 0.8) +
+  geom_text(data = events, aes(x = date, y = Inf, label = label), 
+            vjust = 1.5, hjust = -0.05, inherit.aes = FALSE, size = 3.5) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    title = "Weekday Ridership Trends & Major Metro System Developments",
+    x = "Date",
+    y = "Estimated Weekday Ridership",
+    color = "Metro Line"
+  ) +
+  theme_minimal()
+```
+
+
 2. Second Line Graph
 The second line graph shows the same monthly weekday ridership trends from 2019 to 2026, but it also includes vertical lines to mark when new rail lines or extensions opened. These lines help show how new projects may have affected ridership over time. In particular, the June 2023 Regional Connector opening lines up with the increase in A and E Line ridership. This suggests that the new connection may have helped bring in more riders and changed how people travel across the Metro system.
+
+```{r, echo=FALSE}
+ggplot(metro, aes(x = month, y = est_wkday_ridership, color = as.factor(year))) +
+  geom_line(linewidth = 1) +
+  facet_wrap(~ line_name, scales = "free_y") +
+  scale_x_continuous(breaks = 1:12, labels = month.abb) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    title = "Yearly Trajectory Comparison by Month",
+    x = "Month",
+    y = "Estimated Weekday Ridership",
+    color = "Year"
+  ) +
+  theme_bw()
+```
+
 3. Faceted Line Graph
 This line graph compares monthly weekday ridership for each Metro line from 2019 to 2026. All lines show a big drop in 2020 because of the pandemic, but their recovery looks different. The B and D Lines have stayed below their 2019 ridership levels, likely because more people continue to work from home. On the other hand, the A and E Lines started seeing strong increases around mid-2023 and eventually reached or passed their pre-pandemic levels. This could be connected to the June 2023 Regional Connector opening, which helped improve light rail connections across LA County.
+
+```{r, echo=FALSE}
+metro <- read.csv("metro_ridership.csv")
+metro$date <- as.Date(paste(metro$year, metro$month, "01", sep = "-"))
+
+metro %>%
+  filter(year >= 2019 & year <= 2026) %>%
+  ggplot(aes(x = est_wkday_ridership)) +
+  geom_histogram(bins = 30, fill = "steelblue", color = "white", alpha = 0.8) +
+  scale_x_continuous(labels = scales::comma) +
+  labs(
+    title = "Distribution of Monthly Weekday Ridership (2019–2026)",
+    x = "Estimated Weekday Ridership",
+    y = "Frequency (Number of Months)"
+  ) +
+  theme_minimal()
+
+```
+
+
 4. Histogram
 This histogram shows how monthly weekday ridership is spread across all LA Metro rail lines from 2019 to 2026. The graph has two main peaks. The first peak represents lower ridership numbers after the pandemic, along with lines that normally have fewer riders. The second peak represents higher ridership levels from before the pandemic and the recent recovery of some light rail lines. This shows that ridership has changed over time, meaning we need to consider both the pandemic and new rail expansions when studying how the system has recovered.
+
+```{r, echo=FALSE}
+metro %>%
+  filter(year >= 2019 & year <= 2026) %>%
+  ggplot(aes(x = date, y = est_wkday_ridership, fill = line_name)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ line_name, scales = "free_y") +
+  scale_x_date(date_breaks = "2 years", date_labels = "%Y") +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    title = "Monthly Weekday Ridership Trajectory by Line (2019–2026)",
+    x = "Date",
+    y = "Estimated Weekday Ridership"
+  ) +
+  theme_bw()
+```
+
 5. Faceted Bar Chart
 This bar chart shows monthly weekday ridership for each Metro line from 2019 to 2026. All lines had a major drop in early 2020 because of the pandemic, but they have recovered at different rates. The B and D Lines are still below their pre-pandemic ridership levels, possibly because more people are working from home. Meanwhile, the A and E Lines have seen steady growth since mid-2023, with ridership eventually reaching or passing 2019 levels. This growth may be linked to the June 2023 Regional Connector opening, which made it easier for people to trave
 
