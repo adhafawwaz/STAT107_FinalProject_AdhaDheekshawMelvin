@@ -1,4 +1,3 @@
-
 metro <- read.csv("metro_ridership.csv")
 head(metro)
 
@@ -57,3 +56,43 @@ ggplot(metro, aes(x = month, y = est_wkday_ridership, color = as.factor(year))) 
   ) +
   theme_bw()
 
+metro %>%
+  filter(year >= 2019 & year <= 2026) %>%
+  ggplot(aes(x = est_wkday_ridership)) +
+  geom_histogram(bins = 30, fill = "steelblue", color = "white", alpha = 0.8) +
+  scale_x_continuous(labels = scales::comma) +
+  labs(
+    title = "Distribution of Monthly Weekday Ridership (2019–2026)",
+    x = "Estimated Weekday Ridership",
+    y = "Frequency (Number of Months)"
+  ) +
+  theme_minimal()
+
+metro %>%
+  filter(year >= 2019 & year <= 2026) %>%
+  ggplot(aes(x = date, y = est_wkday_ridership, fill = line_name)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ line_name, scales = "free_y") +
+  scale_x_date(date_breaks = "2 years", date_labels = "%Y") +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    title = "Monthly Weekday Ridership Trajectory by Line (2019–2026)",
+    x = "Date",
+    y = "Estimated Weekday Ridership"
+  ) +
+  theme_bw()
+
+metro %>%
+  filter(year >= 2019 & year <= 2026) %>%
+  ggplot(aes(x = date, y = est_wkday_ridership, color = line_name)) +
+  geom_point(alpha = 0.7, size = 1.8, show.legend = FALSE) +
+  geom_smooth(method = "loess", se = FALSE, color = "black", linetype = "dashed", size = 0.6) +
+  facet_wrap(~ line_name, scales = "free_y") +
+  scale_x_date(date_breaks = "2 years", date_labels = "%Y") +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    title = "Monthly Weekday Ridership Scatterplot Trajectory (2019–2026)",
+    x = "Date",
+    y = "Estimated Weekday Ridership"
+  ) +
+  theme_bw()
