@@ -22,8 +22,8 @@ This project analyzes how LA Metro rail ridership in Los Angeles County has chan
 2. Open RStudio and open the project folder.
 3. Set the working directory to the folder containing the project files.
 4. Open 00_requirements.R and run the script to check and load the required packages.
-5. Open 11_DataCleaning.Rmd`and run the code chunks to clean and prepare the dataset.
-6. Open `1_DataVisualization.Rmd and run the code chunks to perform the analysis and generate the visualizations.
+5. Open 11_DataCleaning.Rmd and run the code chunks to clean and prepare the dataset.
+6. Open 1_DataVisualization.Rmd and run the code chunks to perform the analysis and generate the visualizations.
 7. Open FinalReport.Rmd and click Knit to generate the final report.
 8. Review the generated report and visualizations to examine the findings.
 
