@@ -39,6 +39,16 @@ findings of your analysis so far.
 What are the variables and number of observations available? What steps where performed to clean
 the data? If the data is obtained via randomized simulations, clarify the data generating procedure.
 
+For this project, we are using LA Metro rail ridership data from 2019 to 2026. We downloaded this data as a CSV file from ridership.streetsforall.org. It contains 534 observations and six variables: line_name, year, month, est_wkday_ridership, est_sat_ridership, est_sun_ridership.
+
+The dataset includes the rail line, year, month, and estimated ridership for weekdays, Saturdays, and Sundays. We used this information in order to study how the rail ridership has changed over time, specifically before, during and after the COVID-19 pandemic.
+
+We imported the dataset into R, ensuring we had data from 2019 and after. We checked the variables and data types, and also checked for missing values and duplicate observations. We also checked for zero and negative ridership values. We kept the zero values because they might represent the times when certain lines were not in operation, but we are yet to confirm this.
+
+We also made two functions in R to help with cleaning the data. The first, add_date(), combines the year and month into a date column. The second, check_zeros(), checks for zero values in the ridership data. This helps us check the data and prepare it for our graphs.
+
+Finally, we created a date column by combining the year and month. This makes it easier to create graphs showing how ridership changed over time. We did not remove any observations during this initial cleaning process, because our dataset was comprehensive and did not include easily-identifiable inconsistencies.
+
 • Visualization: Provide preliminary visualizations in the form of histograms, density plots, scatter
 plots, box-plots, and numerical summaries of the data, depending on the type of analysis. What do
 these visualizations suggest about the hypothesis, model or simulation you are aiming to perform? If
