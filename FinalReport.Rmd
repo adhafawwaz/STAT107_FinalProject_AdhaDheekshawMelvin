@@ -55,6 +55,9 @@ plots, box-plots, and numerical summaries of the data, depending on the type of 
 these visualizations suggest about the hypothesis, model or simulation you are aiming to perform? If
 you aim to generate further data visualizations, describe them here.
 
+```{r figure-label, echo=FALSE, fig.cap="This is my figure caption", fig.align='center', out.width="70%"}
+knitr::include_graphics(figures/figure1.pdf)
+```
 1. First Line Graph
 This line graph shows monthly weekday ridership for each LA Metro rail line from 2019 to 2026. Before 2020, the B Line had the most riders, with around 100,000 daily boardings, while the A and E Lines had about 50,000 to 60,000. In March 2020, ridership dropped by more than 70% across all lines because of the pandemic. Ridership slowly started to recover after 2021, but things changed around mid-2023. The B Line's recovery slowed down, while the A and E Lines saw a big increase in riders. By 2024–2026, the A Line had caught up to and even passed the B Line in weekday ridership.
 2. Second Line Graph
