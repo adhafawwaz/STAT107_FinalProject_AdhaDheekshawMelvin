@@ -1,6 +1,8 @@
 ---
 title: "Data Visualization"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 date: "2026-11-06"
 ---
 
@@ -8,22 +10,102 @@ date: "2026-11-06"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+```{r, echo=FALSE}
+metro <- read.csv("metro_ridership.csv")
+head(metro)
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# 1. Read the data (if not already loaded)
+metro <- read.csv("metro_ridership.csv")
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+# 2. Create the date column so line plots work properly
+metro$date <- as.Date(paste(metro$year, metro$month, "01", sep = "-"))
 
-```{r cars}
-summary(cars)
+# 3. Create the graph ~ looking at ridership over time for each line
+ggplot(metro, aes(x = date, y = est_wkday_ridership, color = line_name)) +
+  geom_line(linewidth = 0.8) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    title = "Estimated Weekday Ridership Over Time",
+    x = "Date",
+    y = "Estimated Weekday Ridership",
+    color = "Metro Line"
+  ) +
+  theme_minimal()
+```
+Prior to 2020, LA Metro rail ridership was at its highest, led by the B Line subway(100,000+ weekly ridership). When the COVID-19 pandemic hit in early 2020, ridership plummeted by over 70% across all lines. Since 2021, ridership has steadily recovered, though weekday levels remain below 2019 numbers due to remote and hybrid work. However, major improvements—especially opening the Regional Connector in June 2023—boosted light rail lines (like the A and E Lines), helping ridership bounce back faster and spreading passenger traffic more evenly across Los Angeles County.
+
+
+```{r, echo=FALSE}
+# Adding dates when the new Metro projects were opened
+# October 2022: The K line is opened
+# June 2023: Regional Connecter opening (Re-links of A, E, and L lines)
+events <- data.frame(
+  date = as.Date(c("2022-10-01", "2023-06-01")),
+  label = c("K Line Opens", "Regional Connector Opens")
+)
+
+ggplot(metro, aes(x = date, y = est_wkday_ridership, color = line_name)) +
+  geom_line(linewidth = 0.8) +
+  geom_vline(data = events, aes(xintercept = date), linetype = "dotted", linewidth = 0.8) +
+  geom_text(data = events, aes(x = date, y = Inf, label = label), 
+            vjust = 1.5, hjust = -0.05, inherit.aes = FALSE, size = 3.5) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    title = "Weekday Ridership Trends & Major Metro System Developments",
+    x = "Date",
+    y = "Estimated Weekday Ridership",
+    color = "Metro Line"
+  ) +
+  theme_minimal()
 ```
 
-## Including Plots
+When COVID-19 hit in early 2020, LA Metro ridership fell to nearly a quarter of its 2019 levels. Recovery was slow until major system developments expanded travel options. The opening of the K Line in October 2022 brought steady new growth, but the Regional Connector in June 2023 created the biggest boost. By eliminating transfers through Downtown LA for the A, E, and L lines, ridership on light rail lines surged—pushing lines like the A Line past its 2019 pre-pandemic levels, while subway lines continued a slower recovery due to hybrid office schedules.
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r, echo=FALSE}
+# Compare years Side by Side
+ggplot(metro, aes(x = month, y = est_wkday_ridership, color = as.factor(year))) +
+  geom_line(linewidth = 1) +
+  facet_wrap(~ line_name, scales = "free_y") +
+  scale_x_continuous(breaks = 1:12, labels = month.abb) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    title = "Yearly Trajectory Comparison by Month",
+    x = "Month",
+    y = "Estimated Weekday Ridership",
+    color = "Year"
+  ) +
+  theme_bw()
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+A Line (Blue Line)
+-Pre-Pandemic vs. Post-Pandemic Trajectory: In 2019 (orange line), ridership sat between 30,000–60,000 monthly weekday boardings. After crashing in 2020 (green line) to around 20,000, recovery was gradual through 2021–2022.
+-Impact of Developments: In mid-2023 (dark turquoise line) and continuing through 2024–2026 (purple/pink lines), the A Line experienced a dramatic jump in ridership, easily exceeding pre-pandemic 2019 levels and reaching upwards of 60,000–70,000.
+-Key Finding: The June 2023 Regional Connector consolidated the former L Line into the A Line, creating the longest light rail line in the nation and driving massive post-pandemic growth that exceeded pre-COVID baselines.
+
+B Line (Red Line Subway)
+-Pre-Pandemic vs. Post-Pandemic Trajectory: Dominated the entire system in 2019 at roughly 120,000–140,000 weekday boardings. It dropped sharply in 2020 to under 40,000.
+-Recovery Pattern: Post-2020 recovery (2021–2026) shows steady annual progress, but each consecutive year remains stacked well below the 2019 baseline line, capping around 60,000–80,000.
+-Key Finding: As LA Metro’s primary Downtown commuting trunk, the B Line’s partial recovery highlights the persistent structural impact of hybrid and work-from-home models on traditional office commuters.
+
+C Line (Green Line)
+-Pre-Pandemic vs. Post-Pandemic Trajectory: Averaged 25,000–30,000 weekday boardings in 2019, plummeting to near 10,000 in 2020.
+-Recovery Pattern: Shows steady, evenly spaced upward steps year-over-year from 2021 through 2026, slowly approaching but staying slightly under pre-pandemic levels.
+-Key Finding: Demonstrates a classic, gradual post-pandemic recovery driven mainly by essential local travel along the I-105 corridor rather than major routing expansions.
+
+D Line (Purple Line Subway)
+-Pre-Pandemic vs. Post-Pandemic Trajectory: Like the B Line, the D Line experienced a massive relative gap between pre-COVID baseline levels and post-2020 years.
+-Key Finding: Serves as another key subway corridor heavily influenced by Downtown commute patterns, mirroring the B Line's slower multi-year rebound relative to light rail lines.
+
+E Line (Expo Line)
+-Pre-Pandemic vs. Post-Pandemic Trajectory: Averaged 50,000–60,000 weekday trips in 2019, dropped below 20,000 in 2020, and steadily rebuilt through 2021–2022.
+-Impact of Developments: Similar to the A Line, the 2023–2026 lines show a steep upward shift, climbing back toward and rivaling 2019 baseline levels.
+-Key Finding: The Regional Connector (June 2023) directly eliminated the downtown transfer bottleneck for the E Line, allowing travel from Santa Monica straight through to East LA and accelerating its return to near 100% pre-pandemic levels.
+
+K Line (Crenshaw/LAX Line)
+-Trajectory & Impact of Developments: Introduced in late 2022 (teal line) at low volume (~2,500 boardings), followed by distinct higher steps in 2023, 2024, and 2025–2026 (reaching up to 7,500+).
+-Key Finding: Represents brand-new post-pandemic capacity. Its step-wise year-over-year growth shows steady market adoption in South LA as surrounding transit infrastructure and station connections (like the LAX Transit Center) came online.
+
+L Line (Gold Line)
+-Trajectory: High levels in 2019 (orange line near 40,000–50,000), dropping in 2020–2022, and then terminating after mid-2023.
+-Key Finding: The disappearance of the standalone L Line line after mid-2023 directly correlates with the Regional Connector opening, which re-routed and absorbed its service into the expanded A and E Lines.
