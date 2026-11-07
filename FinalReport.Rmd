@@ -1,5 +1,7 @@
 ---
-title: "FinalReport"
+title: 'STAT 107 Final Report'
+author: "Adha Syakhroza, Dheekshaw Gopinath, Melvin Tambriz"
+date: 'Due 2026-10-30'
 output:
   pdf_document: default
   html_document: default
@@ -44,3 +46,10 @@ you aim to generate further data visualizations, describe them here.
 
 • Analysis: Provide some preliminary plans of what analysis you aim to complete. Mention models,
 tests, procedures, and some ideas of what expected outcomes you hope to find
+First, we will clean and organize the dataset by checking for inconsistencies, duplicate observations, etc. We will then use descriptive statistics in order to summarize ridership  patterns across time periods. In particular, we will compare pre-pandemic ridership (using 2019 as our baseline) with ridership during and after the pandemic to measure the extent of recovery.
+
+Next, we will plan to create data visualizations, such as line graphs, histograms, and bar graphs, to illustrate the ridership fluctuations across a period of time. These visualizations will help identify declines, recovery periods, and potential changes corresponding with infrastructure developments.
+
+In addition, we may conduct hypothesis tests to determine whether the differences between pre-pandemic and post-pandemic ridership levels are statistically significant. We also plan to calculate percentage changes and recovery rates relative to 2019 to quantify how closely ridership has returned to its past peaks.
+
+Lastly, we hope to identify whether infrastructure changes correspond with noticeable increases in ridership. We expect to find that despite the fact ridership hasn't fully recovered past pre-pandemic levels, we would still anticipate improvements in transit accessiblity contributing to increased usage.
