@@ -7,7 +7,9 @@ output:
   html_document: default
 ---
 
-# Analyzing the Post-Pandemic Fluctuation of Metro Rail Ridership in Los Angeles County
+\begin{center}
+{\LARGE \textbf{Analyzing the Post-Pandemic Fluctuation of Metro Rail Ridership in Los Angeles}}
+\end{center}
 
 The COVID-19 pandemic significantly disrupted public transportation usage across Los Angeles County, causing a substantial decline in LA Metro rail ridership. This project examines how rail ridership has changed since 2020, comparing post-pandemic trends with pre-pandemic levels to evaluate the extent of recovery. In particular, we investigate whether recent infrastructure developments have corresponded with noticeable changes in ridership. Our analysis aims to identify patterns, fluctuations, and potential relationships between transportation infrastructure improvements and public transit demand. Preliminary observations suggest that although ridership has gradually recovered since the pandemic, it continues to face challenges in returning to pre-pandemic levels. By examining these trends, this project seeks to better understand the factors influencing public transportation recovery and identify opportunities to encourage greater rail transit usage throughout Los Angeles County.
 
