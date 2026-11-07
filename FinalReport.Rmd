@@ -7,12 +7,31 @@ output:
 
   Title and Abstract: Give a title to your project. In an abstract of 200 words or less, describe what is
 the main question you aim to answer, and a brief summary of your current results.
-• Introduction: What is the central question that motivates your analysis? Who may this analysis
-benefit? Are you trying to train a model, test a hypothesis, classify objects apart? Why? This has to
-be written with proper grammar and syntax: sentences, paragraphs, and a narrative structure.
+
+Title: Analyzing the Post-Pandemic Fluctuation of Metro Rail Ridership in Los Angeles County
+
+The COVID-19 pandemic significantly disrupted public transportation usage across Los Angeles County, causing a substantial decline in LA Metro rail ridership. This project examines how rail ridership has changed since 2020, comparing post-pandemic trends with pre-pandemic levels to evaluate the extent of recovery. In particular, we investigate whether recent infrastructure developments have corresponded with noticeable changes in ridership. Our analysis aims to identify patterns, fluctuations, and potential relationships between transportation infrastructure improvements and public transit demand. Preliminary observations suggest that although ridership has gradually recovered since the pandemic, it continues to face challenges in returning to pre-pandemic levels. By examining these trends, this project seeks to better understand the factors influencing public transportation recovery and identify opportunities to encourage greater rail transit usage throughout Los Angeles County.
+
+
+• Introduction: What is the central question that motivates your analysis? Who may this analysis benefit? Are you trying to train a model, test a hypothesis, classify objects apart? Why? This has to be written with proper grammar and syntax: sentences, paragraphs, and a narrative structure.
+
+The central question this project aims to answer is, "How has LA Metro rail ridership in Los Angeles County changed since the COVID-19 pandemic, and to what extent have recent developments influenced its recovery compared to pre-pandemic levels?"
+
+To investigate this question, we will analyze LA Metro rail ridership data, examining changes from pre-pandemic til' present time. We will compare ridership levels, identify upward trends, and investigate fluctuations that may correspond with major infrastructure developments, including but not limited to, the D Line extension and the opening of the LAX/Metro Transit Center.
+
+This analysis may benefit LA Metro transportation planners, local government officials, policymakers, and Los Angeles County residents. Understanding how ridership responds to infrastructure improvements and an overall increase in area covered, would greatly help inform future public transportation investments and transit policies.
+
+Rather than developing a predictive model, our primary objective is to conduct an exploratory data analysis and further investigate potential relationships between infrastructure developments and ridership recovery. Ultimately, we hope to identify trends that can help explain trajectroy of post-pandemic public transportation usage and highlight potential opportunities to increase rail ridership in the future.
+
+
 
 • Executive Summary: provide, in a series of 3-5 bulletpoints, what are the core conclusions and
 findings of your analysis so far.
+1. Significant pandemic decline: LA Metro rail ridership has experienced a substantial and steep decrease beginning in March 2020, reflecting changes in commuting habits and reduced public transporation demand during the COVID-19 pandemic.
+2. Gradual post-pandemic recovery: Ridership has generally demonstrated an upward trend following the initial pandemic decline. However, recovery has been gradual and subject to fluctuations.
+3. Infrastructure developments: Recent transportation projects, such as LAX/Metro Transit Center, Regional Connector, and the D Line extension represent relevant developments that may influence rail accessibility and ridership patterns.
+4. Implications for Future Transit Planning: Understanding the relationship between infrastructure improvements, commuting patterns, and ridership demand may help policymakers identify strategies to encourage greater public transportation usage throughout Los Angeles County.
+
 
 • Data: What is the data available for performing the analysis? Where did you retrieve these data from?
 What are the variables and number of observations available? What steps where performed to clean
