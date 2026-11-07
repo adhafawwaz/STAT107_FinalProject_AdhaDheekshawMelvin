@@ -8,6 +8,11 @@ date: "2026-11-06"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+# Loading the cleaning functions
+source("01_funct_datacleaning.R")
+```
+
 # Importing the Data
 
 We are importing the LA Metro ridership dataset.
@@ -38,14 +43,7 @@ sum(duplicated(metro[c("line_name", "year", "month")]))
 ```{r}
 # Some zeros might mean the line isn't running / data isn't being recorded
 
-# Zero values for weekdays
-sum(metro$est_wkday_ridership == 0)
-
-# Zero values for Saturday 
-sum(metro$est_sat_ridership == 0)
-
-# Zero values for Sunday 
-sum(metro$est_sun_ridership == 0)
+check_zeros(metro)
 
 #Ridership should not be negative, so I am checking that as well
 
@@ -68,9 +66,6 @@ table(metro$line_name[metro$est_wkday_ridership == 0])
 ```{r}
 
 # Putting the year and month together, so we can use the dates for graphs
-
-# Using the function from our cleaning file
-source("01_funct_datacleaning.R")
 
 # Adding the date column
 metro <- add_date(metro)
