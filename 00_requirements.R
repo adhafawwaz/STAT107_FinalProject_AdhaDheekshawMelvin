@@ -22,8 +22,3 @@ if (!require(dplyr)) {       ## If package is not installed
   install.packages("dplyr") ## Install
   library(dplyr)
 }
-
-if (!require(dplyr)) {       ## If package is not installed  
-  install.packages("dplyr") ## Install
-  library(dplyr)
-}
