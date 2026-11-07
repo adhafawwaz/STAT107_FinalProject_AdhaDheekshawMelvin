@@ -7,15 +7,12 @@ output:
   html_document: default
 ---
 
-  Title and Abstract: Give a title to your project. In an abstract of 200 words or less, describe what is
-the main question you aim to answer, and a brief summary of your current results.
-
-Title: Analyzing the Post-Pandemic Fluctuation of Metro Rail Ridership in Los Angeles County
+# Analyzing the Post-Pandemic Fluctuation of Metro Rail Ridership in Los Angeles County
 
 The COVID-19 pandemic significantly disrupted public transportation usage across Los Angeles County, causing a substantial decline in LA Metro rail ridership. This project examines how rail ridership has changed since 2020, comparing post-pandemic trends with pre-pandemic levels to evaluate the extent of recovery. In particular, we investigate whether recent infrastructure developments have corresponded with noticeable changes in ridership. Our analysis aims to identify patterns, fluctuations, and potential relationships between transportation infrastructure improvements and public transit demand. Preliminary observations suggest that although ridership has gradually recovered since the pandemic, it continues to face challenges in returning to pre-pandemic levels. By examining these trends, this project seeks to better understand the factors influencing public transportation recovery and identify opportunities to encourage greater rail transit usage throughout Los Angeles County.
 
 
-• Introduction: What is the central question that motivates your analysis? Who may this analysis benefit? Are you trying to train a model, test a hypothesis, classify objects apart? Why? This has to be written with proper grammar and syntax: sentences, paragraphs, and a narrative structure.
+# Introduction
 
 The central question this project aims to answer is, "How has LA Metro rail ridership in Los Angeles County changed since the COVID-19 pandemic, and to what extent have recent developments influenced its recovery compared to pre-pandemic levels?"
 
@@ -25,19 +22,19 @@ This analysis may benefit LA Metro transportation planners, local government off
 
 Rather than developing a predictive model, our primary objective is to conduct an exploratory data analysis and further investigate potential relationships between infrastructure developments and ridership recovery. Ultimately, we hope to identify trends that can help explain trajectroy of post-pandemic public transportation usage and highlight potential opportunities to increase rail ridership in the future.
 
+Here is the link to the repository of our project on GitHub: 
+https://github.com/adhafawwaz/STAT107_FinalProject_AdhaDheekshawMelvin.git
 
 
-• Executive Summary: provide, in a series of 3-5 bulletpoints, what are the core conclusions and
-findings of your analysis so far.
+# Executive Summary
+
 1. Significant pandemic decline: LA Metro rail ridership has experienced a substantial and steep decrease beginning in March 2020, reflecting changes in commuting habits and reduced public transporation demand during the COVID-19 pandemic.
 2. Gradual post-pandemic recovery: Ridership has generally demonstrated an upward trend following the initial pandemic decline. However, recovery has been gradual and subject to fluctuations.
 3. Infrastructure developments: Recent transportation projects, such as LAX/Metro Transit Center, Regional Connector, and the D Line extension represent relevant developments that may influence rail accessibility and ridership patterns.
 4. Implications for Future Transit Planning: Understanding the relationship between infrastructure improvements, commuting patterns, and ridership demand may help policymakers identify strategies to encourage greater public transportation usage throughout Los Angeles County.
 
 
-• Data: What is the data available for performing the analysis? Where did you retrieve these data from?
-What are the variables and number of observations available? What steps where performed to clean
-the data? If the data is obtained via randomized simulations, clarify the data generating procedure.
+# Data
 
 For this project, we are using LA Metro rail ridership data from 2019 to 2026. We downloaded this data as a CSV file from ridership.streetsforall.org. It contains 534 observations and six variables: line_name, year, month, est_wkday_ridership, est_sat_ridership, est_sun_ridership.
 
@@ -50,10 +47,7 @@ We also made two functions in R to help with cleaning the data. The first, add_d
 Finally, we created a date column by combining the year and month. This makes it easier to create graphs showing how ridership changed over time. We did not remove any observations during this initial cleaning process, because our dataset was comprehensive and did not include easily-identifiable inconsistencies.
 
 
-• Visualization: Provide preliminary visualizations in the form of histograms, density plots, scatter
-plots, box-plots, and numerical summaries of the data, depending on the type of analysis. What do
-these visualizations suggest about the hypothesis, model or simulation you are aiming to perform? If
-you aim to generate further data visualizations, describe them here.
+# Visualization
 
 ```{r setup, echo=FALSE}
 library(dplyr)
@@ -73,7 +67,7 @@ ggplot(metro, aes(x = date, y = est_wkday_ridership, color = line_name)) +
   theme_minimal()
 ```
 
-1. First Line Graph
+## 1. First Line Graph
 This line graph shows monthly weekday ridership for each LA Metro rail line from 2019 to 2026. Before 2020, the B Line had the most riders, with around 100,000 daily boardings, while the A and E Lines had about 50,000 to 60,000. In March 2020, ridership dropped by more than 70% across all lines because of the pandemic. Ridership slowly started to recover after 2021, but things changed around mid-2023. The B Line's recovery slowed down, while the A and E Lines saw a big increase in riders. By 2024–2026, the A Line had caught up to and even passed the B Line in weekday ridership.
 
 ```{r, echo=FALSE}
@@ -98,7 +92,7 @@ ggplot(metro, aes(x = date, y = est_wkday_ridership, color = line_name)) +
 ```
 
 
-2. Second Line Graph
+## 2. Second Line Graph
 The second line graph shows the same monthly weekday ridership trends from 2019 to 2026, but it also includes vertical lines to mark when new rail lines or extensions opened. These lines help show how new projects may have affected ridership over time. In particular, the June 2023 Regional Connector opening lines up with the increase in A and E Line ridership. This suggests that the new connection may have helped bring in more riders and changed how people travel across the Metro system.
 
 ```{r, echo=FALSE}
@@ -116,7 +110,7 @@ ggplot(metro, aes(x = month, y = est_wkday_ridership, color = as.factor(year))) 
   theme_bw()
 ```
 
-3. Faceted Line Graph
+## 3. Faceted Line Graph
 This line graph compares monthly weekday ridership for each Metro line from 2019 to 2026. All lines show a big drop in 2020 because of the pandemic, but their recovery looks different. The B and D Lines have stayed below their 2019 ridership levels, likely because more people continue to work from home. On the other hand, the A and E Lines started seeing strong increases around mid-2023 and eventually reached or passed their pre-pandemic levels. This could be connected to the June 2023 Regional Connector opening, which helped improve light rail connections across LA County.
 
 ```{r, echo=FALSE}
@@ -138,7 +132,7 @@ metro %>%
 ```
 
 
-4. Histogram
+## 4. Histogram
 This histogram shows how monthly weekday ridership is spread across all LA Metro rail lines from 2019 to 2026. The graph has two main peaks. The first peak represents lower ridership numbers after the pandemic, along with lines that normally have fewer riders. The second peak represents higher ridership levels from before the pandemic and the recent recovery of some light rail lines. This shows that ridership has changed over time, meaning we need to consider both the pandemic and new rail expansions when studying how the system has recovered.
 
 ```{r, echo=FALSE}
@@ -157,11 +151,10 @@ metro %>%
   theme_bw()
 ```
 
-5. Faceted Bar Chart
+## 5. Faceted Bar Chart
 This bar chart shows monthly weekday ridership for each Metro line from 2019 to 2026. All lines had a major drop in early 2020 because of the pandemic, but they have recovered at different rates. The B and D Lines are still below their pre-pandemic ridership levels, possibly because more people are working from home. Meanwhile, the A and E Lines have seen steady growth since mid-2023, with ridership eventually reaching or passing 2019 levels. This growth may be linked to the June 2023 Regional Connector opening, which made it easier for people to trave
 
-• Analysis: Provide some preliminary plans of what analysis you aim to complete. Mention models,
-tests, procedures, and some ideas of what expected outcomes you hope to find
+# Analysis
 First, we will clean and organize the dataset by checking for inconsistencies, duplicate observations, etc. We will then use descriptive statistics in order to summarize ridership  patterns across time periods. In particular, we will compare pre-pandemic ridership (using 2019 as our baseline) with ridership during and after the pandemic to measure the extent of recovery.
 
 Next, we will plan to create data visualizations, such as line graphs, histograms, and bar graphs, to illustrate the ridership fluctuations across a period of time. These visualizations will help identify declines, recovery periods, and potential changes corresponding with infrastructure developments.
@@ -169,3 +162,4 @@ Next, we will plan to create data visualizations, such as line graphs, histogram
 In addition, we may conduct hypothesis tests to determine whether the differences between pre-pandemic and post-pandemic ridership levels are statistically significant. We also plan to calculate percentage changes and recovery rates relative to 2019 to quantify how closely ridership has returned to its past peaks.
 
 Lastly, we hope to identify whether infrastructure changes correspond with noticeable increases in ridership. We expect to find that despite the fact ridership hasn't fully recovered past pre-pandemic levels, we would still anticipate improvements in transit accessiblity contributing to increased usage.
+
