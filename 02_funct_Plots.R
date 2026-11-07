@@ -1,7 +1,11 @@
 metro <- read.csv("metro_ridership.csv")
 head(metro)
 
-# 1. Read the data (if not already loaded)
+# 1. Load the required package
+library(ggplot2)
+
+# 2. Read the data (if not already loaded)
+
 metro <- read.csv("metro_ridership.csv")
 
 # 2. Create the date column so line plots work properly
@@ -19,6 +23,8 @@ ggplot(metro, aes(x = date, y = est_wkday_ridership, color = line_name)) +
   ) +
   theme_minimal()
 
+
+library(ggplot2)
 
 # Adding dates when the new Metro projects were opened
 # October 2022: The K line is opened
